@@ -16,9 +16,10 @@
 ![micro-ROS](https://img.shields.io/badge/micro--ROS-planned-00F0FF?style=for-the-badge)
 
 <br>
-
-<img src="docs/images/robot-isometrik.jpg" alt="Robot ESP32 Avoider" width="640">
-
+![Robot 3D](images/robot.png)
+<p align="center">
+  <img src="images/robot.png" alt="Robot 3D" width="500">
+</p>
 </div>
 
 ---
