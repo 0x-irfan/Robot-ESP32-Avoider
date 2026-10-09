@@ -54,13 +54,13 @@ Selanjutnya robot akan diintegrasikan dengan **ROS 2 Humble** di **Ubuntu 22.04*
 
 <div align="center">
 
-| Depan | Samping | Belakang |
-|:---:|:---:|:---:|
-| <img src="docs/images/robot-depan.jpg" width="260"> | <img src="docs/images/robot-samping.jpg" width="260"> | <img src="docs/images/robot-belakang.jpg" width="260"> |
-
-| Atas | Isometrik / 3/4 |
+| Depan | Samping |
 |:---:|:---:|
-| <img src="images/robot-atas.png" width="290"> | <img src="docs/images/robot-isometrik.jpg" width="390"> |
+| <img src="images/robot-depan.png" width="260"> | <img src="images/robot-samping.png" width="260"> |
+
+| Atas | Belakang |
+|:---:|:---:|
+| <img src="images/robot-atas.png" width="260"> | <img src="images/robot-belakang.png" width="260"> |
 
 </div>
 
