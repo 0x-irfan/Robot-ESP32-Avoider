@@ -68,16 +68,10 @@ Selanjutnya robot akan diintegrasikan dengan **ROS 2 Humble** di **Ubuntu 22.04*
 
 ## 🔌 Rangkaian
 
-### 📐 Skematik
+### 📐 Skematik & 🧵 Wiring Diagram
 
 <div align="center">
-<img src="docs/images/schematic.png" alt="Skematik" width="800">
-</div>
-
-### 🧵 Wiring Diagram
-
-<div align="center">
-<img src="docs/images/wiring-diagram.png" alt="Wiring diagram" width="800">
+<img src="images/schematicWiring.png" alt="Skematik" width="800">
 </div>
 
 ### 🟩 Foto PCB
