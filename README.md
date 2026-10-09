@@ -71,7 +71,7 @@ Selanjutnya robot akan diintegrasikan dengan **ROS 2 Humble** di **Ubuntu 22.04*
 ### 📐 Skematik & 🧵 Wiring Diagram
 
 <div align="center">
-<img src="images/schematicWiring.png" alt="Skematik" width="800">
+<img src="images/SchematicWiring.png" alt="Skematik" width="800">
 </div>
 
 ### 🟩 Foto PCB
@@ -80,7 +80,7 @@ Selanjutnya robot akan diintegrasikan dengan **ROS 2 Humble** di **Ubuntu 22.04*
 
 | PCB Tampak Atas | PCB Tampak Bawah |
 |:---:|:---:|
-| <img src="images/pcb-atas.png" width="290"> | <img src="docs/images/pcb-bawah.jpg" width="390"> |
+| <img src="images/pcb-atas.png" width="290"> | <img src="images/pcb-bawah.png" width="390"> |
 
 </div>
 
