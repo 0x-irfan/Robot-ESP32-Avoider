@@ -17,7 +17,7 @@
 
 <br>
 <p align="center">
-  <img src="images/robot.png" alt="Robot 3D" width="500">
+  <img src="images/robot.png" alt="Robot 3D" width="300">
 </p>
 </div>
 
@@ -71,13 +71,13 @@ Selanjutnya robot akan diintegrasikan dengan **ROS 2 Humble** di **Ubuntu 22.04*
 ### 📐 Skematik & 🧵 Wiring Diagram
 
 <div align="center">
-<img src="images/SchematicWiring.png" alt="Skematik" width="800">
+<img src="images/SchematicWiring.png" alt="Skematik" width="400">
 </div>
 
 ### Desain PCB
 
 <div align="center">
-<img src="images/pcb.png" alt="Skematik" width="800">
+<img src="images/pcb.png" alt="Skematik" width="400">
 </div>
 
 ### 🟩 Foto PCB
