@@ -1,4 +1,3 @@
-![Robot 3D](images/robot.png)
 <div align="center">
 
 # 🤖 ROBOT ESP32 AVOIDER
