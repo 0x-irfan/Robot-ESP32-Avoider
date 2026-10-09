@@ -99,8 +99,6 @@ Selanjutnya robot akan diintegrasikan dengan **ROS 2 Humble** di **Ubuntu 22.04*
 
 ## 🕹️ Firmware Dual Mode
 
-📄 [`firmware/ESP32_AVOIDER/ESP32_AVOIDER.ino`](firmware/ESP32_AVOIDER/ESP32_AVOIDER.ino)
-
 ### ⚡ Mulai Cepat
 
 1. Pasang **Arduino IDE** dan paket board **esp32 by Espressif**.
@@ -160,7 +158,6 @@ stateDiagram-v2
 
 </details>
 
-📄 Versi autonomous murni tanpa web (acuan kalibrasi): [`firmware/robot_avoider_auto/robot_avoider_auto.ino`](firmware/robot_avoider_auto/robot_avoider_auto.ino)
 
 ---
 
@@ -186,7 +183,6 @@ stateDiagram-v2
 
 ## 🧠 Integrasi ROS 2 Humble + micro-ROS
 
-> 🚧 **Status: dalam perencanaan.** Kode ROS 2 dan micro-ROS belum dibuat. Bagian ini memuat rancangan dan akan diperbarui setelah implementasi dan pengujian.
 
 ### 🎯 Tujuan
 
@@ -229,7 +225,6 @@ flowchart LR
 | `/avoider/mode_cmd` | `std_msgs/msg/String` | ROS 2 ➜ ESP32 | Perintah ganti mode |
 
 <details>
-<summary>⌨️ Contoh perintah yang akan dipakai (diverifikasi saat implementasi)</summary>
 
 ```bash
 # Jalankan micro-ROS Agent (transport UDP, port 8888)
@@ -246,7 +241,7 @@ ros2 topic pub /avoider/cmd_vel geometry_msgs/msg/Twist \
 
 </details>
 
-> 📝 Firmware web saat ini memakai ESP32 sebagai Access Point (`192.168.4.1`). Untuk micro-ROS ada dua pilihan: laptop Ubuntu terhubung ke AP ESP32 (agent di laptop), atau memakai transport Serial/USB. Pilihan akhir akan dicatat di sini setelah diuji.
+> 📝 Firmware web saat ini memakai ESP32 sebagai Access Point (`192.168.4.1`). Untuk micro-ROS ada dua pilihan: laptop Ubuntu terhubung ke AP ESP32 (agent di laptop), atau memakai transport Serial/USB. 
 
 ---
 
@@ -258,18 +253,12 @@ ros2 topic pub /avoider/cmd_vel geometry_msgs/msg/Twist \
 
 ### 💻 Terminal Ubuntu
 
-<img src="docs/images/ubuntu-terminal.png" alt="Terminal Ubuntu" width="760">
+<img src="images/ubuntu-terminal.png" alt="Terminal Ubuntu" width="760">
 
 ### 📡 Tampilan Radar di Ubuntu
 
-<img src="docs/images/ubuntu-radar.png" alt="Radar Ubuntu" width="760">
+<img src="images/ubuntu-radar.png" alt="Radar Ubuntu" width="760">
 
 </div>
 
 ---
-
-<div align="center">
-
-⭐ Jika proyek ini bermanfaat, beri bintang pada repositori ini.
-
-</div>
