@@ -170,11 +170,7 @@ stateDiagram-v2
 
 | 🕹️ Mode Manual | 🧠 Mode Autonomous |
 |:---:|:---:|
-| <img src="docs/images/web-manual.png" width="480"> | <img src="docs/images/web-autonomous.png" width="480"> |
-
-| 📱 Aplikasi Android (APK) |
-|:---:|
-| <img src="docs/images/apk.png" width="480"> |
+| <img src="images/manual.png" width="480"> | <img src="images/auto.png" width="480"> |
 
 </div>
 
