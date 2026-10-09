@@ -1,3 +1,4 @@
+![Robot 3D](images/robot.png)
 <div align="center">
 
 # 🤖 ROBOT ESP32 AVOIDER
@@ -16,7 +17,6 @@
 ![micro-ROS](https://img.shields.io/badge/micro--ROS-planned-00F0FF?style=for-the-badge)
 
 <br>
-![Robot 3D](images/robot.png)
 <p align="center">
   <img src="images/robot.png" alt="Robot 3D" width="500">
 </p>
