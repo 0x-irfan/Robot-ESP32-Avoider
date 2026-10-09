@@ -74,6 +74,12 @@ Selanjutnya robot akan diintegrasikan dengan **ROS 2 Humble** di **Ubuntu 22.04*
 <img src="images/SchematicWiring.png" alt="Skematik" width="800">
 </div>
 
+### Desain PCB
+
+<div align="center">
+<img src="images/pcb.png" alt="Skematik" width="800">
+</div>
+
 ### 🟩 Foto PCB
 
 <div align="center">
