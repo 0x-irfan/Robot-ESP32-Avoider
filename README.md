@@ -253,7 +253,6 @@ ros2 topic pub /avoider/cmd_vel geometry_msgs/msg/Twist \
 
 ## 🐧 Tampilan di Ubuntu
 
-> Diisi setelah integrasi ROS 2 selesai.
 
 <div align="center">
 
