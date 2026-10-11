@@ -11,12 +11,16 @@
 #include <std_msgs/msg/string.h>
 #include <std_msgs/msg/int32.h>
 #include <geometry_msgs/msg/twist.h>
+
 #if !defined(ESP32)
 #error "Sketch ini hanya untuk ESP32"
 #endif
 
 const char*    WIFI_SSID  = "ESP32_avoider";
 const char*    WIFI_PASS  = "12345678";
+
+// !!! GANTI dengan IP laptop/PC Ubuntu yang menjalankan micro-ROS agent !!!
+// Cek dengan:  hostname -I
 const char*    AGENT_IP   = "10.12.196.137";
 const uint16_t AGENT_PORT = 8888;
 
@@ -34,10 +38,9 @@ const bool INVERT_LEFT  = false;
 const bool INVERT_RIGHT = true;
 #define CH_A 4
 #define CH_B 5
-
-const unsigned long CMD_TIMEOUT_MS    = 500;   // failsafe: tanpa perintah > ini -> motor berhenti
-const unsigned long SERVO_SETTLE_MS   = 300;   // waktu tunggu servo sampai dianggap diam
-const unsigned long SENSOR_PERIOD_MS  = 50;    // baca sonar + publish telemetry (20 Hz)
+const unsigned long CMD_TIMEOUT_MS    = 500;   
+const unsigned long SERVO_SETTLE_MS   = 300;   
+const unsigned long SENSOR_PERIOD_MS  = 25;    
 const unsigned long INFO_PERIOD_MS    = 1000;
 const unsigned long PING_PERIOD_MS    = 500;
 
@@ -126,7 +129,7 @@ float readDistance() {
   digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIG_PIN, LOW);
-  unsigned long dur = pulseIn(ECHO_PIN, HIGH, 25000UL);
+  unsigned long dur = pulseIn(ECHO_PIN, HIGH, 15000UL);  
   if (dur == 0) return -1;
   return dur * 0.0343f / 2.0f;
 }
@@ -183,7 +186,6 @@ bool createEntities() {
 void destroyEntities() {
   rmw_context_t* rmw_context = rcl_context_get_rmw_context(&support.context);
   (void) rmw_uros_set_context_entity_destroy_session_timeout(rmw_context, 0);
-
   (void) rcl_publisher_fini(&tel_pub, &node);
   (void) rcl_publisher_fini(&info_pub, &node);
   (void) rcl_subscription_fini(&cmd_sub, &node);
@@ -250,7 +252,7 @@ void microRosTask() {
         else agentState = AGENT_DISCONNECTED;
       }
       if (agentState == AGENT_CONNECTED) {
-        rclc_executor_spin_some(&executor, RCL_MS_TO_NS(2));   
+        rclc_executor_spin_some(&executor, RCL_MS_TO_NS(2));  
 
         if (millis() - tSensor >= SENSOR_PERIOD_MS) {
           tSensor = millis();
@@ -271,6 +273,42 @@ void microRosTask() {
       agentState = WAITING_AGENT;
       break;
   }
+}
+
+const char* wifiReasonText(uint8_t r) {
+  switch (r) {
+    case 2:   return "AUTH_EXPIRE";
+    case 5:   return "ASSOC_TOOMANY - router penuh / batas jumlah klien";
+    case 15:  return "4WAY_HANDSHAKE_TIMEOUT - password / mode keamanan";
+    case 200: return "BEACON_TIMEOUT - sinyal lemah";
+    case 201: return "NO_AP_FOUND - SSID tidak terlihat";
+    case 202: return "AUTH_FAIL - password / mode keamanan salah";
+    case 203: return "ASSOC_FAIL - router menolak (MAC filter / WPA3 / PMF / batas klien)";
+    case 204: return "HANDSHAKE_TIMEOUT";
+    case 205: return "CONNECTION_FAIL";
+    default:  return "";
+  }
+}
+
+void onWiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info) {
+  if (event == ARDUINO_EVENT_WIFI_STA_DISCONNECTED) {
+    uint8_t r = info.wifi_sta_disconnected.reason;
+    Serial.printf("[WiFi] gagal/putus, reason=%u %s\n", r, wifiReasonText(r));
+  }
+}
+
+bool connectWiFi(unsigned long timeoutMs) {
+  WiFi.disconnect(true);
+  delay(200);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  unsigned long t0 = millis();
+  while (WiFi.status() != WL_CONNECTED && millis() - t0 < timeoutMs) {
+    delay(250);
+    Serial.print('.');
+  }
+  Serial.println();
+  return WiFi.status() == WL_CONNECTED;
 }
 
 void setup() {
@@ -307,8 +345,18 @@ void setup() {
   Serial.printf("\n=== ROBOT AVOIDER (micro-ROS) ===\nWiFi  : %s\nAgent : %s:%u\n",
                 WIFI_SSID, AGENT_IP, AGENT_PORT);
 
+  WiFi.onEvent(onWiFiEvent);
+  WiFi.persistent(false);
+  WiFi.mode(WIFI_STA);
+
+  int attempt = 1;
+  while (!connectWiFi(15000)) {
+    Serial.printf("[WiFi] Percobaan %d gagal, ulangi dalam 3 detik...\n", attempt++);
+    delay(3000);
+  }
+  Serial.printf("[WiFi] Tersambung! ch=%d rssi=%d dBm\n", WiFi.channel(), WiFi.RSSI());
   set_microros_wifi_transports((char*)WIFI_SSID, (char*)WIFI_PASS, (char*)AGENT_IP, AGENT_PORT);
-  WiFi.setSleep(false);              
+  WiFi.setSleep(false);      
 
   Serial.print("IP ESP32: ");
   Serial.println(WiFi.localIP());
