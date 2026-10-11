@@ -259,11 +259,11 @@ ros2 topic pub /avoider/cmd_vel geometry_msgs/msg/Twist \
 
 ### 💻 Terminal Ubuntu
 
-<img src="images/ubuntu-terminal.png" alt="Terminal Ubuntu" width="760">
+<img src="images/terminal_ubuntu.png" alt="Terminal Ubuntu" width="760">
 
 ### 📡 Tampilan Radar di Ubuntu
 
-<img src="images/ubuntu-radar.png" alt="Radar Ubuntu" width="760">
+<img src="images/radar_desktop.png" alt="Radar Ubuntu" width="760">
 
 </div>
 
